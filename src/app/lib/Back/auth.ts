@@ -1,5 +1,4 @@
 import type { NextAuthOptions, User } from "next-auth";
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./ConnectToDB";
 import { User as UserModel } from "./Models/User";
@@ -15,8 +14,12 @@ const credentialsConfig = CredentialsProvider({
       if (!credentials?.username || !credentials?.password) {
         throw new Error("Username and password are required");
       }
+
       await connectToDb();
+
       const user = await UserModel.findOne({ username: credentials.username });
+
+      // ATENÇÃO: ideal usar bcrypt para verificar senha
       if (user && user.password === credentials.password) {
         return {
           id: user._id.toString(),
@@ -26,6 +29,7 @@ const credentialsConfig = CredentialsProvider({
           username: user.username,
         } as User;
       }
+
       return null;
     } catch (err) {
       console.error(err);
@@ -41,11 +45,8 @@ const config: NextAuthOptions = {
     async signIn({ user }: { user: User }) {
       try {
         await connectToDb();
-        const loggedIn = await UserModel.findOne({ email: user.email });
-        if (!loggedIn) {
-          return false;
-        }
-        return true;
+        const exists = await UserModel.findOne({ email: user.email });
+        return !!exists;
       } catch (err) {
         console.error(err);
         return false;
@@ -54,4 +55,4 @@ const config: NextAuthOptions = {
   },
 };
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config);
+export const authOptions = config;
