@@ -1,61 +1,57 @@
-import type { NextAuthConfig } from "next-auth";
+import type { NextAuthOptions, User } from "next-auth";
 import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { connectToDb } from "./ConnectToDB";
+import { User as UserModel } from "./Models/User";
 
-import credentials from "next-auth/providers/credentials";
-  import { connectToDb } from "./ConnectToDB";
-  import { User } from "./Models/User";
-
-const credentialsConfig = credentials({
+const credentialsConfig = CredentialsProvider({
   name: "Credentials",
-
   credentials: {
-    username: {
-      label: "username",
-    },
-    password: {
-      label: "Password",
-      type: "password",
-    },
+    username: { label: "Username" },
+    password: { label: "Password", type: "password" },
   },
-
   async authorize(credentials) {
     try {
-      connectToDb();
-      const user = await User.findOne({ username: credentials?.username });
-      if (user) {
-        if (user.password === credentials?.password) {
-          return user;
-        } else return null;
+      if (!credentials?.username || !credentials?.password) {
+        throw new Error("Username and password are required");
       }
+      await connectToDb();
+      const user = await UserModel.findOne({ username: credentials.username });
+      if (user && user.password === credentials.password) {
+        return {
+          id: user._id.toString(),
+          name: user.username,
+          email: user.email,
+          image: user.image,
+          username: user.username,
+        } as User;
+      }
+      return null;
     } catch (err) {
-      console.log(err);
+      console.error(err);
       throw new Error("Failed to login!");
     }
   },
 });
 
-const config = {
+const config: NextAuthOptions = {
   providers: [credentialsConfig],
-  secret: "asuidh98723y1sahdid219yd2121",
-
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user, profile }) {
-      await connectToDb();
-      const loggedIn = await User.findOne({ email: profile?.email });
-      if (!loggedIn) {
-        const newUser = new User({
-          userId: user?.id,
-          username: profile?.name,
-          email: profile?.email,
-          image: profile?.image,
-        });
-        await newUser.save();
+    async signIn({ user }: { user: User }) {
+      try {
+        await connectToDb();
+        const loggedIn = await UserModel.findOne({ email: user.email });
+        if (!loggedIn) {
+          return false;
+        }
+        return true;
+      } catch (err) {
+        console.error(err);
+        return false;
       }
-      return true;
     },
   },
-
-  trustHost: true,
-} satisfies NextAuthConfig;
+};
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);

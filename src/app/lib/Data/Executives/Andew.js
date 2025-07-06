@@ -1,5 +1,5 @@
 const Andrew = {
-  name: "Andrew ",
+  name: "Andrew",
   wpp: "556191708049",
   src: "/Executives/Andrew.jpeg",
   descp:

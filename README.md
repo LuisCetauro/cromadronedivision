@@ -8,6 +8,7 @@
 
 # melhorias :
 
+    Integrar Users ao DB( drones tb mas só dps)
     Footer
     Estilizar
     Logo Antiga
