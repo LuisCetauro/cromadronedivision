@@ -3,6 +3,18 @@ import { authOptions } from "@/app/lib/Back/auth";
 import { redirect } from "next/navigation";
 import { GetMyContacts } from "@/app/lib/Back/Actions/ContactActions";
 
+interface Contact {
+  _id: string;
+  Name: string;
+  Phone: string;
+  Email: string;
+  Bussines: string;
+  Message: string;
+  ExecutiveName: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -22,7 +34,7 @@ export default async function Dashboard() {
 
         {contacts && contacts.length > 0 ? (
           <ul className="mt-4 space-y-2">
-            {contacts.map((contact: any) => (
+            {contacts.map((contact: Contact) => (
               <li
                 key={contact._id}
                 className="p-4 border rounded-lg bg-white shadow-md"

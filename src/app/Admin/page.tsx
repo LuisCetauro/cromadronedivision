@@ -29,6 +29,7 @@ export default function Admin() {
         router.push("/Admin/Dashboard");
       }
     } catch (err) {
+      console.log(err);
       setError("Erro ao realizar login. Tente novamente.");
     }
   };
