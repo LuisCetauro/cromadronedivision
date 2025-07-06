@@ -27,6 +27,9 @@ const credentialsConfig = CredentialsProvider({
           username: user.username,
           executive: user.executive,
           isAdmin: user.isAdmin,
+          descp: user.descp,
+          wpp: user.wpp,
+          src: user.src,
         } as User;
       }
 

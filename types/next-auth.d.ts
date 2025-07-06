@@ -8,6 +8,9 @@ declare module "next-auth" {
     name?: string | null;
     executive?: string | null;
     isAdmin: boolean;
+    descp: string;
+    wpp: string;
+    src: string;
   }
 
   interface Session {

@@ -1,14 +1,15 @@
 # TO DO
 
     /Admin => falta fazer o meu(isAdmin) + deletar os contatos(enviar para uma coleção diferente (trash))
-    Ordem de quem aparece
+    Estilizar o "Enviar Comentários"
+    Estilizar p/ mobile (/Admin + DashBoard)
+    Footer
 
 ---
 
 # melhorias :
 
-    Integrar Users ao DB( drones tb mas só dps)
-    Footer
-    Estilizar
+    Integrar Drones ao DB
+    Estilizar ( sm + )
     Logo Antiga
     Hash = password
