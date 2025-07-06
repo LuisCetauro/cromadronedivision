@@ -30,10 +30,19 @@ export const AddContact = async (formData: FormData): Promise<void> => {
       { $inc: { count: 1 } },
       { new: true, upsert: true }
     );
-
-    // 👇 Não retorne nada — deixe o retorno como `void`
   } catch (error) {
     console.error("Erro ao salvar contato:", error);
-    // Também não retorne erro — apenas logue
+  }
+};
+
+export const GetMyContacts = async (executiveName: String) => {
+  try {
+    const contacts = await Contact.find({
+      ExecutiveName: executiveName,
+    });
+    return contacts;
+  } catch (error) {
+    console.error("Erro ao buscar seus contatos:", error);
+    throw error;
   }
 };

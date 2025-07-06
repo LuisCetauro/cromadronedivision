@@ -1,8 +1,7 @@
 # TO DO
 
-    NextAuth  => fazendo ( funciona mas esta com erro que não permite compilar)
-    Criar User (collection criada)=>
-    /Admin
+    /Admin => falta fazer o meu(isAdmin) + deletar os contatos(enviar para uma coleção diferente (trash))
+    Ordem de quem aparece
 
 ---
 
@@ -12,6 +11,4 @@
     Footer
     Estilizar
     Logo Antiga
-    Arrumar a questão da ordem de quem aparece
     Hash = password
-    .env
