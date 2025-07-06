@@ -5,7 +5,7 @@ export default function NavBar() {
   return (
     <nav className="flex items-center justify-between px-4 h-16 bg-white shadow">
       <div className="relative w-16 h-16">
-        <Image src="/croma_logo_embed.svg" alt="Logo Croma" fill />
+        <Image src="/Logos/croma_logo_embed.svg" alt="Logo Croma" fill />
       </div>
       <div className="flex gap-8">
         <Link href="/">Home</Link>

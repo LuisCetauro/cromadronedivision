@@ -1,8 +1,16 @@
 # TO DO
 
-    NextAuth  => fazendo
-    Criar Contacts(collection criada) = >
+    NextAuth  => fazendo ( funciona mas esta com erro que não permite compilar)
     Criar User (collection criada)=>
-    Criar Order => todos os 3 estão se alternando aleatóriamente
-    Fazer um Footer
+    /Admin
+
+---
+
+# melhorias :
+
+    Footer
     Estilizar
+    Logo Antiga
+    Arrumar a questão da ordem de quem aparece
+    Hash = password
+    .env
