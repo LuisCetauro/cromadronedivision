@@ -2,7 +2,7 @@ import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
 
 import credentials from "next-auth/providers/credentials";
-import { connectToDb } from "./connectToDb";
+import { connectToDb } from "./ConnectToDB";
 import { User } from "./Models/User";
 
 const credentialsConfig = credentials({
