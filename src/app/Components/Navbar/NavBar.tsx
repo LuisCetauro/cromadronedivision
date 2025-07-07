@@ -8,8 +8,15 @@ export default function NavBar() {
         <Image src="/Logos/croma_logo_embed.svg" alt="Logo Croma" fill />
       </div>
       <div className="flex gap-8">
-        <Link href="/">Home</Link>
-        <Link href="/Contact">Contact</Link>
+        <Link className="border-4 border-red-400 p-2 rounded-full" href="/">
+          Home
+        </Link>
+        <Link
+          className="border-4 border-red-400 p-2 rounded-full"
+          href="/Contact"
+        >
+          Contact
+        </Link>
       </div>
     </nav>
   );

@@ -8,6 +8,7 @@ const contactSchema = new mongoose.Schema(
     Bussines: String,
     Message: String,
     ExecutiveName: String,
+    slug: String,
   },
   { timestamps: true }
 );

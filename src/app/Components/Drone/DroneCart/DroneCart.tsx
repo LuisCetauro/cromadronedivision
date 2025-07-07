@@ -37,7 +37,12 @@ export default function DroneCart() {
               />
             </div>
           )}
-          <Link href={`/${drone.slug}`}>Conheça mais</Link>
+          <Link
+            className="px-4  bg-green-600 text-white rounded"
+            href={`/${drone.slug}`}
+          >
+            Conheça mais
+          </Link>
         </article>
       ))}
     </section>

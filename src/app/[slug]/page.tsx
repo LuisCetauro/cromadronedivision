@@ -23,7 +23,9 @@ export default function DroneDetails() {
       <section className="p-6 text-center">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-bold">{drone.name}</h1>
-          <Link href="/">Voltar</Link>
+          <Link className="px-4  bg-green-600 text-white rounded" href="/">
+            Voltar
+          </Link>
         </div>
 
         <p className="text-gray-600 mb-2">Tipo: {drone.type}</p>
@@ -51,7 +53,10 @@ export default function DroneDetails() {
               />
             </div>
             <div>
-              <button onClick={() => setState(true)}>
+              <button
+                className="px-4 mt-2 bg-green-600 text-white rounded"
+                onClick={() => setState(true)}
+              >
                 Ver Descrição Completa
               </button>
             </div>
@@ -59,7 +64,12 @@ export default function DroneDetails() {
         )}
         {state && (
           <div>
-            <button onClick={() => setState(false)}>Esconder Descrição</button>
+            <button
+              className="px-4 mt-2 bg-green-600 text-white rounded"
+              onClick={() => setState(false)}
+            >
+              Esconder Descrição
+            </button>
             <p className="mt-4 text-left">{drone.Description}</p>
           </div>
         )}

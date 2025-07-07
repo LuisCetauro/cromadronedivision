@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { connectToDb } from "../ConnectToDB";
 import { Contact } from "../Models/Contact";
 import { Order } from "../Models/Order";
@@ -44,5 +45,17 @@ export const GetMyContacts = async (executiveName: string) => {
   } catch (error) {
     console.error("Erro ao buscar seus contatos:", error);
     throw error;
+  }
+};
+
+export const DeleteContact = async (formData: FormData) => {
+  const { slug } = Object.fromEntries(formData);
+
+  try {
+    const res = await Contact.findOneAndDelete({ slug: slug });
+
+    redirect("/Admin/Dashboard");
+  } catch (error) {
+    console.log(error);
   }
 };

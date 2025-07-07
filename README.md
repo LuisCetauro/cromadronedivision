@@ -1,8 +1,6 @@
 # TO DO
 
-    /Admin => falta fazer o meu(isAdmin) + deletar os contatos(enviar para uma coleção diferente (trash))
-    Estilizar o "Enviar Comentários"
-    Estilizar p/ mobile (/Admin + DashBoard)
+    gerar slug ao criar um comentário
     Footer
 
 ---
@@ -13,3 +11,4 @@
     Estilizar ( sm + )
     Logo Antiga
     Hash = password
+    Alterar senha

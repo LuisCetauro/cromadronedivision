@@ -35,27 +35,35 @@ export default function Admin() {
   };
 
   return (
-    <section>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Login</button>
-          {error && <p style={{ color: "red" }}>{error}</p>}
-        </form>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-center items-center gap-2 text-sm bg-red-300 p-4 rounded-2xl mt-16"
+    >
+      <div className="flex flex-col justify-center items-center gap-2 text-sm bg-red-500 p-4 text-white rounded-2xl">
+        <input
+          className="border-4 border-black p-2 rounded-full"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          className="border-4 border-black p-2 rounded-full"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button
+          className="mt-2 px-4 py-2 bg-green-600 text-white rounded"
+          type="submit"
+        >
+          Login
+        </button>
       </div>
-    </section>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+    </form>
   );
 }
