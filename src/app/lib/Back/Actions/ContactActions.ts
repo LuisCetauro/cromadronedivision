@@ -5,6 +5,29 @@ import { connectToDb } from "../ConnectToDB";
 import { Contact } from "../Models/Contact";
 import { Order } from "../Models/Order";
 
+function generateRandomSlug(length = 8) {
+  const chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let slug = "";
+  for (let i = 0; i < length; i++) {
+    slug += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return slug;
+}
+
+async function generateUniqueSlug(): Promise<string> {
+  let slug: string;
+  let exists = true;
+
+  do {
+    slug = generateRandomSlug();
+    const existing = await Contact.findOne({ slug });
+    exists = !!existing;
+  } while (exists);
+
+  return slug;
+}
+
 export const AddContact = async (formData: FormData): Promise<void> => {
   const Name = formData.get("Name")?.toString();
   const Phone = formData.get("Phone")?.toString();
@@ -16,6 +39,8 @@ export const AddContact = async (formData: FormData): Promise<void> => {
   try {
     await connectToDb();
 
+    const slug = await generateUniqueSlug();
+
     const newContact = new Contact({
       Name,
       Phone,
@@ -23,7 +48,9 @@ export const AddContact = async (formData: FormData): Promise<void> => {
       Bussines,
       Message,
       ExecutiveName,
+      slug,
     });
+
     await newContact.save();
 
     await Order.findOneAndUpdate(

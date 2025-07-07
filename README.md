@@ -12,3 +12,6 @@
     Logo Antiga
     Hash = password
     Alterar senha
+
+
+    Lentidão para realizar o login(clica para logar e demora uns 3 segundos)
