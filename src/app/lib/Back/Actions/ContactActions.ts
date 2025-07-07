@@ -38,6 +38,7 @@ export const AddContact = async (formData: FormData): Promise<void> => {
 
 export const GetMyContacts = async (executiveName: string) => {
   try {
+    await connectToDb();
     const contacts = await Contact.find({
       ExecutiveName: executiveName,
     });
