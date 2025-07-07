@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { connectToDb } from "../ConnectToDB";
 import { Contact } from "../Models/Contact";
 import { Order } from "../Models/Order";
