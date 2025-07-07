@@ -104,7 +104,7 @@ export default async function Dashboard() {
         </section>
       );
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error("Erro no Dashboard:", error);
     return (
       <section>
