@@ -53,7 +53,7 @@ export const DeleteContact = async (formData: FormData) => {
 
   try {
     const res = await Contact.findOneAndDelete({ slug: slug });
-
+    console.log(res);
     redirect("/Admin/Dashboard");
   } catch (error) {
     console.log(error);
